@@ -1,0 +1,52 @@
+.bg-color-header {
+    background-color: #7fa4fd !important;
+}
+
+.bg-color-footer {
+    background-color: #7fa4fd !important;
+}
+
+.header-flex{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.header-links {
+    font-size: 0.9rem;
+    padding:10px 15px;
+    margin:0px 10px;
+    color: white !important;
+}
+
+.header-links:focus {
+    background-color: white !important;   
+    border: #121826 3px solid;  
+    border-radius: 5px;   
+    color: #121826 !important;
+}
+
+.header-links:hover {
+    background-color: white !important;   
+    border: #121826 3px solid;  
+    outline: 1px white solid; 
+    border-radius: 10px; 
+    color: #121826 !important;
+}
+
+.header-links:active {
+    background-color:  #7fa4fd !important;
+    border-radius: 10px;
+    color: white;
+}
+
+.header-links:visited {
+    background-color:  #7fa4fd !important;
+    border-radius: 10px;
+    color: white;
+}
+
+.focus-logo {
+    color: white;
+}
+
