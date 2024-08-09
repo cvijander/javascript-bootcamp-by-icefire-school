@@ -47,8 +47,149 @@
          </div> <!-- div za kontenjer--> 
         </nav> 
     </header>
+    <section id="unosPodataka" class="distance-between-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <h1 id="title">Welcome</h1>
+            <div>
+              <label for="username">Ime:</label>
+              <input type="text" id="username" >
+            </div>
+            <div>
+              <button type="button"  class="btn btn-primary" onclick="submitUserToLocalStorage();" id ="buttonEntry">Unesi korisnika</button>
+              <button type="button" class="btn btn-danger" onclick="removeUserToLocalStorage();" id ="buttonRemove">Ukloni korisnika</button>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div id="clock">
+              <div class="labelZaSat">Trenutno vreme:</div>
+              <div id="current-time"></div>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div id="date">
+              <div class="labelZaDate">Datum:</div>
+              <div id="current-date"></div>
+            </div>
+          </div>
+        </div>
+      </div>  
+    </section>
+    <section class="distance-between-section">
+      <div class="container">
+        <form>
+          <p id="taskDescription">Unesite opis vasih taskova (zadataka)- ako ih nemate, mozete i preskociti : </p>
+          <div>
+            <label for="firstTask">Prvi zadatak:</label>
+            <input type="text" id="firstTask" name="firstTask">
+            <button type="button" disabled class="btn btn-info " id="updateFirstTask" onclick="updateFirstTaskToSessionStorage();">Azuriraj prvi zadatak</button>
+          </div>
+          <div>
+            <label for="secondTask">Drugi zadatak:</label>
+            <input type="text" id="secondTask" name="secondTask">
+            <button type="button" disabled class="btn btn-info " id="updateSecondTask" onclick="updateSecondTaskToSessionStorage();">Azuriraj drugi zadatak</button>
+          </div>
+          <div>
+            <label for="thirdTask">Treci zadatak:</label>
+            <input type="text" id="thirdTask" name="thirdTask">
+            <button type="button" disabled class="btn btn-info " id="updateThirdTask" onclick="updateThirdTaskToSessionStorage();">Azuriraj treci zadatak</button>
+          </div>
+          <div>
+            <label for="fourthTask">Cetvrti zadatak:</label>
+            <input type="text" id="fourthTask" name="fourthTask">
+            <button type="button" disabled class="btn btn-info " id="updateFourthTask" onclick="updateFourthTaskToSessionStorage();">Azuriraj cetvrti zadatak</button>
+          </div>
+          <button type="button" disabled class="btn btn-primary " id="buttonTasks" onclick="sendTasksToSessionStorage();">Unesi zadatke</button>
+          <button type="button" disabled class="btn btn-danger " id="removeButtonTasks" onclick="removeTasksFromSessionStorage();">Ukloni zadatke</button>
+        </form>
+      </div>
+    </section>
+    <section id="dugmici " class="distance-between-section" >
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+             <button type="button" class="btn btn-primary btn-block " id="buttonStart" disabled onclick="startFocusBlocks();">Startuj</button>
+          </div>
+          <div class="col-md-4 d-flex justify-content-between">
+             <button type="button" class="btn btn-info " id="buttonPause" disabled onclick="pauseFocusBlocks();">Pauziraj</button>
+             <button type="button" class="btn btn-danger " id="buttonStop" disabled onclick="stopFocusBlocks();">Stopiraj</button>
+          </div>
+        </div>        
+      </div>
+    </section>
 
-    <footer class="bg-color-footer pt-2">
+    <section id="blokovi " class="distance-between-section" >
+      <div class="container">
+        <div class="row ">
+          <div class="col-md-8">
+             <div class="progress">
+               <div class="progress-bar progress-bar-striped bg-primary progress-bar-animated"  role="progressbar" id="firstTaskProgressBar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"><span id="firstTaskLabel">0%</span></div>
+               <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated"  role="progressbar" id="pauseFirstTaskProgressBar" style="width: 0%"><span id="pauseFirstTaskLabel">0%</span></div>
+             </div>
+          </div>
+          <div class="col-md-4">
+             <div class="progress" >
+               <div class="progress-bar progress-bar-striped bg-info" role="progressbar" id="firstMiniPauseProgressBar"  aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+             </div>
+          </div>
+        </div>
+        <div class="row distance-between-blocks">
+          <div class="col-md-8">
+             <div class="progress" >
+               <div class="progress-bar progress-bar-striped bg-primary" id="secondTaskProgressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+             </div>
+          </div>
+          <div class="col-md-4">
+             <div class="progress" >
+               <div class="progress-bar progress-bar-striped bg-info" id="secondMiniPauseProgressBar"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+             </div>
+          </div>
+        </div>
+        <div class="row distance-between-blocks">
+          <div class="col-md-8">
+             <div class="progress" >
+               <div class="progress-bar progress-bar-striped bg-primary" id="thirdTaskProgressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+             </div>
+          </div>
+          <div class="col-md-4">
+             <div class="progress" >
+               <div class="progress-bar progress-bar-striped bg-info" id="thirdMiniPauseProgressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+             </div>
+          </div>
+        </div>
+        <div class="row distance-between-blocks">
+          <div class="col-md-8">
+             <div class="progress" >
+               <div class="progress-bar progress-bar-striped bg-primary" id="fourthTaskProgressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+             </div>             
+          </div>
+          <div class="col-md-4">
+             <div class="progress" >
+               <div class="progress-bar progress-bar-striped bg-info" id="fourthMiniPauseProgressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+             </div>
+          </div>
+        </div>
+        <div class="row distance-between-blocks">
+          <div class="col-md-8">
+             <div class="progress" >
+               <div class="progress-bar progress-bar-striped bg-info" id="fifthTaskBreakProgressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">0%</div>
+             </div>
+          </div>          
+        </div>        
+        <div class="row distance-between-blocks">
+           <div class="col-md-8">             
+               <button type="button" class="btn btn-primary btn-block " id="buttonConfirmTasksDone" disabled onclick="confirmTasksCompleted();">Potvrdi kraj </button>
+           </div>
+           <div class="col-md-4">             
+               <button type="button" class="btn btn-info " id="buttonClearTasks" disabled onclick="clearTasksAndBreaksBlocks();">Restartuj taskove</button>
+           </div>
+        </div>
+      </div>
+      
+    </section>
+
+    <footer class="bg-color-footer pt-2 distance-between-section">
       <div class="container"> 
         <div class="row row-cols-sm-2 py-3 container">
           <div class="col-12 col-sm-10 text-capitalize text-light d-flex justify-content-start mt-2" id="copy">
