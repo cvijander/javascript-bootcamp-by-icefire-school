@@ -78,7 +78,7 @@ function submitUserToLocalStorage()
  let month = dateFromPC.getMonth();
  let date =dateFromPC.getDate();
  let day =dateFromPC.getDay();
- curentDate.innerHTML = dateToDisplay + " >Mesec: " + month  + " datum: "+date + " dan: " +day ;
+ curentDate.innerHTML = dateToDisplay ; //+ "Mesec: " +( month  +1) + " datum: "+date + " dan: " +day ;
 
 //  let separatorClass="";
 //  if(dateFromPC.getSeconds() % 2 === 1) separatorClass="trans";
@@ -223,14 +223,17 @@ function clearTasksFields()
  // user i pakovanje podataka 
 
  let spendTimeOnTasks = 0;
+ // da namestim not to bad resultate da rade 
+  
  let spendTimeOnTasksArray =[];
 
  let userOfPomodo =localStorage.getItem('name');
  console.log(userOfPomodo);
 
  let beginTimeForTasks="" ;
+ let beginDateAndMonthForTask ="";
 
- let userFullResults = [userOfPomodo,beginTimeForTasks,spendTimeOnTasks];
+ let userFullResults = [userOfPomodo, beginTimeForTasks,beginDateAndMonthForTask, spendTimeOnTasks];
  console.log(userFullResults);
  
 function takeCurentTimeForTasks()
@@ -238,6 +241,9 @@ function takeCurentTimeForTasks()
    let dateFromPC =new Date();
        let hours =dateFromPC.getHours();  
        let minutes =dateFromPC.getMinutes();
+       let date =dateFromPC.getDate();
+       let month= dateFromPC.getMonth();
+
        if (minutes <10) 
        {
         minutes ="0"+minutes;
@@ -249,6 +255,8 @@ function takeCurentTimeForTasks()
        }
        beginTimeForTasks  = hours +" : " + minutes + " : "  +seconds ;
        userFullResults[1] = beginTimeForTasks;
+       beginDateAndMonthForTask = date + "."+ (month+1) +".";
+       userFullResults[2] = beginDateAndMonthForTask;
 }
 
  function startFocusBlocks()
@@ -297,6 +305,11 @@ let interval;
 
 function updateFirstTaskProgressBar()
 {
+    // namestam za not to bad  bazu i klasicnu
+    spendTimeOnTasks = 25;
+    userFullResults[3] += spendTimeOnTasks;
+
+
     let progressFirstTask = 0;
     let pauseProgressFirstTask = 0;
     let valueOfCompletedTask = 0
@@ -322,8 +335,13 @@ function updateFirstTaskProgressBar()
         } 
         else 
         {
-          firstTaskProgressBar.textContent="First task : ' " +sessionStorage.getItem('task1')+ " ' was successfully completed ";
-          updateFirstBreakTaskProgressBar();
+        firstTaskProgressBar.textContent="First task : ' " +sessionStorage.getItem('task1')+ " ' was successfully completed ";
+        updateFirstBreakTaskProgressBar();
+        // spendTimeOnTasks += (taskTime+valueOfPauseBreak);
+        // console.log(spendTimeOnTasks);
+        // userFullResults[2] += (taskTime+valueOfPauseBreak);
+        // console.log(spendTimeOnTasksArray);
+        // spendTimeOnTasksArray.push(taskTime);   
         }       
         }, 1000);
         
@@ -334,19 +352,12 @@ function updateFirstTaskProgressBar()
 
            buttonPause.textContent = "Pauziraj";
            valueOfPauseBreak = pauseProgressFirstTask;
-           alert(valueOfPauseBreak +" "+ progressFirstTask);
-           
-           clearInterval(breakInterval);
-           
-
+           alert(valueOfPauseBreak +" "+ progressFirstTask);           
+           clearInterval(breakInterval);  
            progressFirstTask +=20;
            firstTaskProgressBar.style.width = progressFirstTask+"%";
            firstTaskLabel.innerText = progressFirstTask +"%";       
          } );
-
-
-
-    
 
     let interval = setInterval(function() {
         if (progressFirstTask >= 100) {
@@ -356,10 +367,11 @@ function updateFirstTaskProgressBar()
         firstTaskProgressBar.textContent="First task : ' " +sessionStorage.getItem('task1')+ " ' was successfully completed ";
         clearInterval(interval);
         updateFirstBreakTaskProgressBar();
-        spendTimeOnTasks += taskTime+0;
-        userFullResults[2] += taskTime+0;
-        spendTimeOnTasksArray.push(taskTime);
-     
+        // spendTimeOnTasks += (taskTime + valueOfPauseBreak);
+        // console.log(spendTimeOnTasks);
+        // userFullResults[2] += (taskTime + valueOfPauseBreak);
+        // console.log(spendTimeOnTasksArray);
+        // spendTimeOnTasksArray.push(taskTime);     
 
         } else {
        progressFirstTask +=20;
@@ -369,6 +381,7 @@ function updateFirstTaskProgressBar()
        
     },5000);
 }
+
 let firstMiniPauseProgressBar =document.getElementById('firstMiniPauseProgressBar');
 
 function updateFirstBreakTaskProgressBar()
@@ -380,8 +393,9 @@ function updateFirstBreakTaskProgressBar()
         firstMiniPauseProgressBar.textContent="First mini break completed ";       
         clearInterval(interval);
         updateSecondTaskProgressBar();
-        spendTimeOnTasks += smallBreak+0;
-        userFullResults[2] += smallBreak+0;
+        spendTimeOnTasks += smallBreak;
+        console.log("Time on first mini pause " +spendTimeOnTasks);
+        userFullResults[3] += smallBreak;
         spendTimeOnTasksArray.push(smallBreak);
 
 
@@ -406,7 +420,8 @@ function updateSecondTaskProgressBar()
         updateSecondBreakTaskProgressBar();       
         clearInterval(interval);
         spendTimeOnTasks += taskTime+0;
-        userFullResults[2] += taskTime+0;
+        console.log("Time on second task " +spendTimeOnTasks);
+        userFullResults[3] += taskTime+0;
         spendTimeOnTasksArray.push(taskTime);
 
         }else {
@@ -430,8 +445,9 @@ function updateSecondBreakTaskProgressBar()
         secondMiniPauseProgressBar.textContent="Second mini break completed ";     
         updateThirdTaskProgressBar();
         clearInterval(interval);
-        spendTimeOnTasks += smallBreak+0;
-        userFullResults[2] += smallBreak+0;
+        spendTimeOnTasks += smallBreak;
+        console.log("Time on second mini pause " +spendTimeOnTasks);
+        userFullResults[3] += smallBreak;
         spendTimeOnTasksArray.push(smallBreak);
 
         }else {
@@ -456,7 +472,8 @@ function updateThirdTaskProgressBar()
         updateThirdBreakTaskProgressBar();
         clearInterval(interval);
         spendTimeOnTasks += taskTime+0;
-        userFullResults[2] += taskTime+0;
+        console.log("Time on third task " +spendTimeOnTasks);
+        userFullResults[3] += taskTime+0;
         spendTimeOnTasksArray.push(taskTime);
 
         }else {
@@ -481,8 +498,9 @@ function updateThirdBreakTaskProgressBar()
         thirdMiniPauseProgressBar.textContent="Third mini break completed ";    
         updateFourthTaskProgressBar();
          clearInterval(intervalThirdBreakTask);
-         spendTimeOnTasks += smallBreak+0;
-         userFullResults[2] += smallBreak+0;
+         spendTimeOnTasks += smallBreak;
+         console.log("Time on third mini pause " +spendTimeOnTasks);
+         userFullResults[3] += smallBreak;
          spendTimeOnTasksArray.push(smallBreak);
 
         }else {
@@ -507,7 +525,8 @@ function updateFourthTaskProgressBar()
         updateFourthBreakTaskProgressBar();
         clearInterval(intervalFourthTask);
         spendTimeOnTasks += taskTime+0;
-        userFullResults[2] += taskTime+0;
+        console.log("Time on fourth task " +spendTimeOnTasks);
+        userFullResults[3] += taskTime+0;
         spendTimeOnTasksArray.push(taskTime);
 
         }else {
@@ -531,8 +550,9 @@ function updateFourthBreakTaskProgressBar()
         fourthMiniPauseProgressBar.textContent="Fourth mini break completed ";  
         updateFifthBreakTaskProgressBar();
         clearInterval(intervalFourthBreakTask);
-        spendTimeOnTasks += smallBreak+0;
-        userFullResults[2] += smallBreak+0;
+        spendTimeOnTasks += smallBreak;
+        console.log("Time on fourth mini pause " +spendTimeOnTasks);
+        userFullResults[3] += smallBreak;
         spendTimeOnTasksArray.push(smallBreak);
 
         }else {
@@ -562,8 +582,9 @@ function updateFifthBreakTaskProgressBar()
         buttonConfirmTasksDone.disabled = false;
         buttonClearTasks .disabled = false;       
         clearInterval(intervalFifthBigBreak);
-        spendTimeOnTasks += bigBreak+0;
-        userFullResults[2] += bigBreak+0;
+        spendTimeOnTasks += bigBreak;
+        console.log("Time on big break pause " +spendTimeOnTasks);
+        userFullResults[3] += bigBreak;
         spendTimeOnTasksArray.push(bigBreak);
 
         }else {
@@ -581,6 +602,8 @@ function confirmTasksCompleted()
     console.log(userFullResults);
     console.log(spendTimeOnTasksArray);
 
+    
+
   if (spendTimeOnTasks == (4*(taskTime+ smallBreak) +bigBreak))
   {
     perfectScore();
@@ -593,11 +616,15 @@ function confirmTasksCompleted()
   {
      iWishIDoneIt(); 
   }
+  
 }
 
 // ocisti tj vrati sva polja na nulu 
 function clearTasksAndBreaksBlocks()
 {
+     spendTimeOnTasks=0;
+     spendTimeOnTasksArray=[];
+     userFullResults[3]=0;
       // first 
        firstTaskProgressBar.style.width = 0+"%";            
        firstTaskProgressBar.textContent=""; 
@@ -606,63 +633,177 @@ function clearTasksAndBreaksBlocks()
        firstMiniPauseProgressBar.textContent=""; 
 
        // second 
-       secondTaskProgressBar.style.width = 100+"%";            
+       secondTaskProgressBar.style.width = 0+"%";            
        secondTaskProgressBar.textContent="";  
 
-       secondMiniPauseProgressBar.style.width = 100+"%";            
+       secondMiniPauseProgressBar.style.width = 0+"%";            
        secondMiniPauseProgressBar.textContent = ""; 
 
        // third 
-       thirdTaskProgressBar.style.width = 100+"%";
-       thirdTaskProgressBar.style.backgroundColor="#E9ECEF";      
+       thirdTaskProgressBar.style.width = 0+"%";            
        thirdTaskProgressBar.textContent= "";  
 
-       thirdMiniPauseProgressBar.style.width = 100+"%";
-       thirdMiniPauseProgressBar.style.backgroundColor="#E9ECEF";
+       thirdMiniPauseProgressBar.style.width = 0+"%";       
        thirdMiniPauseProgressBar.textContent= "";  
 
        //fourth 
-       fourthTaskProgressBar.style.width = 100+"%";
-       fourthTaskProgressBar.style.backgroundColor="#E9ECEF";      
+       fourthTaskProgressBar.style.width = 0+"%";          
        fourthTaskProgressBar.textContent="";
 
-       fourthMiniPauseProgressBar.style.width = 100+"%";
-       fourthMiniPauseProgressBar.style.backgroundColor="#E9ECEF"; 
+       fourthMiniPauseProgressBar.style.width = 0+"%";       
        fourthMiniPauseProgressBar.textContent="";
 
        // fifth
-       fifthTaskBreakProgressBar.style.width =100+ "%";
-       fifthTaskBreakProgressBar.style.backgroundColor="#E9ECEF"; 
+       fifthTaskBreakProgressBar.style.width =0+ "%";       
        fifthTaskBreakProgressBar.textContent="";     
        
        buttonConfirmTasksDone.disabled = true;
        buttonClearTasks .disabled = true;   
 }
 
+callLocalStorage();
+
 
 function stopProgress()
 {
     clearInterval(progress);
 }
-
+let perfectResult=[];
 // savrseni score kad smo pustili dugme start i zavrsilo je do kraja bez prekida 
 function perfectScore()
 {
+    let perfectResult =JSON.parse(localStorage.getItem('perfectResults')) || []; 
+    perfectResult.push(userFullResults);   
+    console.log(perfectResult);
+    
+    localStorage.setItem('perfectResults',JSON.stringify(perfectResult));
     alert("Congrats  " + localStorage.getItem('name') + " for successfully completed tasks in time.")
 }
-
+let notToBadResult=[];
 // polu score kad smo pustili dugme start ali smo i rucno pauziralo ali ipak  zavrsili dakle start pa pauza pa nastavak ponovo do kraja
 function semiPerfectScoreKeepOn()
 {
+    let notToBadResult =JSON.parse(localStorage.getItem('notToBadResults')) || []; 
+    notToBadResult.push(userFullResults);   
+    console.log(notToBadResult);
+    
+    localStorage.setItem('notToBadResults',JSON.stringify(notToBadResult));
     alert("Congrats  " + localStorage.getItem('name') + " for successfully completed tasks in time. It needed more time, but it was worth it. ")
 }
 
+let badResult=[];
 // nikakav score, zapoceli smo i odustali dakle start pa stop 
 function iWishIDoneIt()
 {
+    let badResult =JSON.parse(localStorage.getItem('badResults')) || []; 
+    badResult.push(userFullResults);   
+    console.log(badResult);
+    
+    localStorage.setItem('badResults',JSON.stringify(badResult));
     alert("More luck   " + localStorage.getItem('name') + " my friend.")
 }
  
+// cupanje podataka koristeci json 
+
+let tablePerfectScore = document.getElementById('tablePerfectScore');
+let tableNotToBadScore = document.getElementById('tableNotToBadScore');
+let tableBadScore = document.getElementById('tableBadScore');
+
+let badDataFromLocalStorage = localStorage.getItem('badResults');
+let notToBadDataFromLocalStorage = localStorage.getItem('notToBadResults');
+let perfectDataFromLocalStorage = localStorage.getItem('perfectResults');
+
+let badDataJSONParsed =JSON.parse(badDataFromLocalStorage);
+let notToBadDataJSONParsed =JSON.parse(notToBadDataFromLocalStorage);
+let perfectDataJSONParsed =JSON.parse(perfectDataFromLocalStorage);
+
+
+
+function callLocalStorage(){
+
+let badDataFromLocalStorage = localStorage.getItem('badResults');
+let notToBadDataFromLocalStorage = localStorage.getItem('notToBadResults');
+let perfectDataFromLocalStorage = localStorage.getItem('perfectResults');
+
+let badDataJSONParsed =JSON.parse(badDataFromLocalStorage);
+let notToBadDataJSONParsed =JSON.parse(notToBadDataFromLocalStorage);
+let perfectDataJSONParsed =JSON.parse(perfectDataFromLocalStorage);
+
+    badDataJSONParsed.forEach(function(ele) 
+    {
+    console.log(ele);  
+    // tableScore.textContent =ele;
+  });
+    
+        
+
+
+console.log("Da vidimo te rezultate")
+console.log(badDataJSONParsed);
+console.log(notToBadDataJSONParsed);
+console.log(perfectDataJSONParsed);
+}
+
+function displayPerfectTableData(passedData)
+{
+    let tbodyPerfectScoreScore =document.getElementById('tbodyPerfectScoreScore');
+    tbodyPerfectScoreScore.textContent='';
+
+    passedData.forEach(rowData =>{
+        let row= document.createElement('tr');
+
+        rowData.forEach(cellData => {
+            let cell =document.createElement('td');
+            cell.textContent =cellData;
+            row.appendChild(cell);
+        });
+
+        tbodyPerfectScoreScore.appendChild(row);
+    } );
+}
+
+function displayNotToBadTableData(passedData)
+{
+    let tbodyNotToBadScore =document.getElementById('tbodyNotToBadScore');
+    tbodyNotToBadScore.textContent='';
+
+    passedData.forEach(rowData =>{
+        let row= document.createElement('tr');
+
+        rowData.forEach(cellData => {
+            let cell =document.createElement('td');
+            cell.textContent =cellData;
+            row.appendChild(cell);
+        });
+
+        tbodyNotToBadScore.appendChild(row);
+    } );
+}
+
+function displayBadTableData(passedData)
+{
+    let tbodyBadScore =document.getElementById('tbodyBadScore');
+    tbodyBadScore.textContent='';
+
+    passedData.forEach(rowData =>{
+        let row= document.createElement('tr');
+
+        rowData.forEach(cellData => {
+            let cell =document.createElement('td');
+            cell.textContent =cellData;
+            row.appendChild(cell);
+        });
+
+        tbodyBadScore.appendChild(row);
+    } );
+}
+
+displayPerfectTableData(perfectDataJSONParsed);
+displayNotToBadTableData(notToBadDataJSONParsed);
+displayBadTableData(badDataJSONParsed);
+
+
+
 // setting page 
 
 

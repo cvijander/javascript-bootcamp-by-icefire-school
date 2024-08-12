@@ -46,17 +46,20 @@
     color: white;
 }
 
+h1 {
+    font-size: 30px;
+}
 .focus-logo {
     color: white;
 }
 
 .distance-between-section {
-  margin-top: 100px;
+  margin-top: 75px;
 
 }
 
 .distance-between-blocks {
-    margin-top: 75px;
+    margin-top: 35px;
 }
 
 .progress {

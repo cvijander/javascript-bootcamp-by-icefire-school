@@ -184,5 +184,20 @@ function changeBackground2() {
 }
 
 
+const body1 = document.querySelector('body');
+const button1 =document.getElementById('dugme');
+
+const colors1 = ['red','blue','orange','purple','yellow'];
+
+button1.addEventListener('click', changeBackground3); 
+
+function changeBackground3()  
+{
+    let colorIndex1 =parseInt( Math.random() *colors1.length);
+    console.log(colorIndex1);
+
+    body1.style.backgroundColor =colors1[colorIndex1];
+}
+
 
 
