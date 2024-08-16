@@ -11,7 +11,7 @@ let name = localStorage.getItem('name');
 let buttonEntryUser = document.getElementById('buttonEntry');
 let buttonRemoveUser = document.getElementById('buttonRemove');
 
-
+let userAlreadyButton =document.getElementById('userAlreadyButton');
 
 function welcomeUser()
 {
@@ -59,6 +59,14 @@ function submitUserToLocalStorage()
         refreshPage();
     }
     
+ }
+
+ userAlreadyButton.addEventListener('click',userAlreadyButton);
+
+ function userAlreadyInLocalStorage() {
+     let currentUser = localStorage.getItem('name');
+     buttonTasks.disabled=false;
+     refreshPage();
  }
 
  // refresuje stranicu kako ne bi morali rucno i onda se odmah vidi da je korisnik ulogovan ili nije 
@@ -306,7 +314,7 @@ let interval;
 function updateFirstTaskProgressBar()
 {
     // namestam za not to bad  bazu i klasicnu
-    spendTimeOnTasks = 25;
+    spendTimeOnTasks = 0;
     userFullResults[3] += spendTimeOnTasks;
 
 
@@ -803,7 +811,35 @@ displayNotToBadTableData(notToBadDataJSONParsed);
 displayBadTableData(badDataJSONParsed);
 
 
+//canvas 
+let images = ['meme1.jpg','meme2.jpg','meme3.jpg','meme4.jpg','meme5.jpg'];
+let indexImages = 0;
+let canvas = document.getElementById('canvas');
+console.log(canvas);
+canvas.style.backgroundImage = `url(images/programming/${images[indexImages]})`;
 
+let arrows = document.querySelectorAll('.arrow');
+
+arrows.forEach(function(arrow){
+   arrow.addEventListener('click',function(e) {
+    if(e.target.id =='left') {
+        indexImages--;
+
+
+        if(indexImages < 0) {
+            indexImages = images.length-1 ;
+        }
+        canvas.style.backgroundImage = `url(images/programming/${images[indexImages]})`;
+        } else {
+         indexImages++;
+
+         if(indexImages > images.length-1) {
+            indexImages = 0;
+         }
+        canvas.style.backgroundImage = `url(images/programming/${images[indexImages]})`;
+    }
+   })
 // setting page 
 
+});
 
