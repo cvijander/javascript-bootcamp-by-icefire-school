@@ -1,57 +1,33 @@
-let numberToGuess = parseInt((Math.random()*100)+1);
-console.log(numberToGuess);
-
-
-
-let numberEntry = document.getElementById('numberEntry');
+let numberEntry =document.getElementById('numberEntry').value;
 let buttonClick =document.getElementById('buttonClick');
+let display = document.getElementById('display');
 
+let numberOfGuesses = 0;
 
-console.log(numberEntry);
-console.log(buttonClick);
+let randomNumber = parseInt (Math.random()*100+1);
+console.log(randomNumber);
 
-console.log(numberToGuess);
-
- let number=null;
-
- console.log(number);
-
-function match () {
-
-
-while(number !== numberToGuess) 
-
-   
+function match()
 {
-     number =parseInt( numberEntry.value); 
+  numberEntry =document.getElementById('numberEntry').value;
+  console.log(numberEntry);
+ 
+ numberOfGuesses++; 
 
-    console.log(typeof number)
-  
-  if (number > numberToGuess)
-  {
-     alert('Nas broj je veci od trazenog ' + number);
-  }
-  else if (number < numberToGuess) 
-  {
-    alert('Nas broj je manji od trazenog ' +number)
-  }
-   else {
-    alert ("Tacno je broj je bio " + number);
-   }
-  
+ let result ='';
+ if(randomNumber == numberEntry)
+ {
+   result =`Pogodili ste , broj je :  ${numberEntry} i trebalo Vam je samo  ${numberOfGuesses}. pokusaja `;
  }
+ else if (randomNumber > numberEntry )
+ {
+  result =`Kompjuteska vrednost je veca  od ${numberEntry} `;
+ }
+ else if (randomNumber < numberEntry )
+ {
+  result =`Kompjuterska vrednost je manja od ${numberEntry} `;
+ }
+ 
+display.textContent = result;
+
 }
-
-// let numberToGuess = Math.floor(Math.random() * 100) + 1;
-// let guess = null;
-
-// while (guess !== numberToGuess) {
-//   guess = parseInt(prompt("Guess a number between 1 and 100:"));
-//   if (guess > numberToGuess) {
-//     alert("Too high!");
-//   } else if (guess < numberToGuess) {
-//     alert("Too low!");
-//   } else {
-//     alert("Correct! The number was " + numberToGuess);
-//   }
-// }
