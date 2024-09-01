@@ -123,19 +123,19 @@ function submitUserToLocalStorage()
 // zadaci tj taskovi 
 
 
-let firstTask =document.getElementById('firstTask');
-let secondTask =document.getElementById('secondTask');
-let thirdTask =document.getElementById('thirdTask');
-let fourthTask =document.getElementById('fourthTask');
-let formData =document.querySelector('form');
+let firstTask = document.getElementById('firstTask');
+let secondTask = document.getElementById('secondTask');
+let thirdTask = document.getElementById('thirdTask');
+let fourthTask = document.getElementById('fourthTask');
+let formData = document.querySelector('form');
 let confirmParagraf = document.getElementById('taskDescription');
 
-let buttonTasks =document.getElementById('buttonTasks');
-let removeButtonTasks =document.getElementById('removeButtonTasks');
-let updateFirstTask =document.getElementById('updateFirstTask');
-let updateSecondTask =document.getElementById('updateSecondTask');
-let updateThirdTask =document.getElementById('updateThirdTask');
-let updateFourthTask =document.getElementById('updateFourthTask');
+let buttonTasks = document.getElementById('buttonTasks');
+let removeButtonTasks = document.getElementById('removeButtonTasks');
+let updateFirstTask = document.getElementById('updateFirstTask');
+let updateSecondTask = document.getElementById('updateSecondTask');
+let updateThirdTask = document.getElementById('updateThirdTask');
+let updateFourthTask = document.getElementById('updateFourthTask');
 
 
 

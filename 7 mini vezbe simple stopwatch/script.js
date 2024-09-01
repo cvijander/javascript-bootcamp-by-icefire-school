@@ -4,7 +4,7 @@ let stopButton =document.getElementById('stopButton');
 let resetButton  =document.getElementById('resetButton');
 
 let timerInterval;
-let elapsedTime =0;
+let elapsedTime = 0;
 
 
 function updateTime() {

@@ -1,7 +1,86 @@
 #container 
 {
-    width: 1000px;
-    height: 600px;
-    position: relative;
+    width: 1400px;
+    height: 800px;
+    position: relative;  
+    background-color: rgba(133, 133, 133, 0.6) ;
+}
+
+#container img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+}
+
+.distance {   
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.miniDistance{
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    gap: 20px;
+    background-color: rgba(133, 133, 133, 0.6) ;
+
+}
+
+body{
+    background-color: rgb(133, 133, 133);
+    background-image: url("imagesPrviServis/background-image-1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat-y;
+
+}
+
+.header-img {
+    background-image: url("imagesPrviServis/prvi-servis-header.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 300px;
+    width: 100%;
+
+}
+
+h1, h2, p, label {
+    color: white;
+}
+
+label, p  {
+    font-size: large;
+    font-weight: 400;
+
+}
+
+#buttonStart, #showResults {
+    color: white;
+    background-color: black;
+    border: 2px solid #CD9317;
+    height: 50px;
+    width: 200px;
+    border-radius: 25px;
+}
+
+#buttonStart:hover, #showResults:hover {
+    color: black;
+    background-color: #CD9317;
+    border: 5px solid black;
+    border-radius: 25px;
+    height: 50px;
+    width: 200px;
 }
 
