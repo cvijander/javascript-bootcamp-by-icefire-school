@@ -21,8 +21,20 @@ let images = [ imageUrl+'/bane.png',
                imageUrl+'/hranislav.png',  
                imageUrl+'/bosiljko.png',  
                imageUrl+'/lazzi.png',  
-               imageUrl+'/milos.png',  
+               imageUrl+'/milos.png',
+               imageUrl+'/stojan.png', 
+               imageUrl+'/safet.png',  
                imageUrl+'/otac.png', 
+               imageUrl+'/kacica.png', 
+               imageUrl+'/banjac.png', 
+               imageUrl+'/miklos.png', 
+               imageUrl+'/nebula.png',             
+               imageUrl+'/vojaBrajovic.png', 
+               imageUrl+'/sky.png', 
+               imageUrl+'/slem.png', 
+               imageUrl+'/plavilik.png', 
+               imageUrl+'/prijatanCovek.png', 
+               imageUrl+'/mirkoRasic.png', 
                  
 ];
 
@@ -35,6 +47,18 @@ let bosiljkoPoints = 8;
 let lazziPoints = 7;
 let milosPoints = 6;
 let otacPoints = 5;
+let kacicaPoints = 8;
+let banjacPoints = 8;
+let miklosPoints = 5;
+let nebulaPoints = 5;
+let safetPoints = 10;
+let stojanPoints = 10;
+let vojaBrajovicPoints = 5;
+let skyPoints = 5;
+let slemPoints = 5;
+let plavilikPoints = 5;
+let prijatanCovekPoints = 5;
+let mirkoRasicPoints = 10;
 
 
 let timerInterval;
@@ -408,6 +432,54 @@ function handleImageClicks(img) {
                 points += otacPoints;
                 break;
 
+            case 'kacica.png':
+                points += kacicaPoints;
+                break;
+
+            case 'banjac.png':
+                points += banjacPoints;
+                break;
+
+            case 'miklos.png':
+                points += miklosPoints;
+                break;
+
+            case 'nebula.png':
+                points += nebulaPoints;
+                break;
+
+            case 'safet.png':
+                points += safetPoints;
+                break;
+
+            case 'stojan.png':
+                points += stojanPoints;
+                break;
+
+            case 'vojaBrajovic.png':
+                points += vojaBrajovicPoints;
+                break;
+
+            case 'sky.png':
+                points += skyPoints;
+                break;
+
+            case 'slem.png':
+                points += slemPoints;
+                break;
+
+            case 'plavilik.png':
+                points += plavilikPoints;
+                break;
+
+            case 'prijatanCovek.png':
+                points += prijatanCovekPoints;
+                break;
+
+            case 'mirkoRasic.png':
+                points += mirkoRasicPoints;
+                break;
+
         }
         displayResults(points);
         container.removeChild(img); 
@@ -419,6 +491,7 @@ function handleImageClicks(img) {
 }
 
 // stopiramo igricu i resetujemo vrenosti 
+let isUljezClicked = false;
 
 function stopGame() {
     

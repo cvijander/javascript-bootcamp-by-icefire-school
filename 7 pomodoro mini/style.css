@@ -1,0 +1,80 @@
+body {
+    background-color: rgb(133,133,133);
+
+}
+
+.trenutnoVreme {
+    height: 200px;
+
+}
+
+.distance-between-section {
+  margin-top: 75px;
+
+}
+
+#clock {
+    font-size: 500;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+
+#focus, #shortBreak, #longBreak, #start, #pause, #restart, #buttonEntry, #buttonRemove, #showResults {
+    color: white;
+    background-color: black;
+    border: 2px solid #CD9317;
+    height: 50px;
+    width: 150px;
+    border-radius: 25px;
+}
+
+#focus:active, #shortBreak:active, #longBreak:active, #start:active, #pause:active, #restart:active, #buttonEntry:active,  #buttonRemove:active, #showResults:active {
+    color: white;
+    background-color: black;
+    border: 2px solid #CD9317;
+    height: 50px;
+    width: 150px;
+    border-radius: 25px;
+}
+
+
+#focus:hover, #shortBreak:hover, #longBreak:hover, #start:hover, #pause:hover, #restart:hover, #buttonEntry:hover,  #buttonRemove:hover, #showResults:hover {
+    color: black;
+    background-color: #CD9317;
+    border: 5px solid black;
+    border-radius: 25px;
+    height: 50px;
+    width: 175px;
+}
+
+
+
+.buttonsOptions {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: 30px;
+}
+
+.timerLabel {
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    font-weight: 700;
+    color:#CD9317
+    
+}
+
+label {
+    font-size: 25px;
+    font-weight: 700;
+    color:#CD9317;
+    margin: 10px;
+
+}
+
+.table {
+    border-color:#CD9317;
+}
